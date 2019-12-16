@@ -21,10 +21,18 @@ const config = {
 };
 
 app.get("/", async function(req, res) {
+
+  const login = req.query.login;
+  const password = req.query.password;
   try {
     const pool = await sql.connect(config);
     const response = await pool.request().query(`select * from users`);
-    res.send(response);
+    if(response.recordset[0].login == login &&response.recordset[0].password == password){
+      res.send(true);
+    }
+    else{
+      res.send(false);
+    }
     await sql.close();
   } catch (err) {
     console.log(err);
