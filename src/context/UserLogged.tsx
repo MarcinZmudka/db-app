@@ -1,12 +1,13 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, Dispatch, SetStateAction } from "react";
 
-export interface AppContextInterface {
-    userLogged: boolean,
-    setUserLogged: Function
-  }
-  
-  const ctxt = React.createContext<AppContextInterface | null>(null);
-  
-  export const AppContextProvider = ctxt.Provider;
-    
-  export const AppContextConsumer = ctxt.Consumer;
+export const UserLoggedContext = React.createContext<any>(false);
+
+export const UserLoggedProvider: React.FC = props => {
+  const [userLogged, setUserLogged] = useState(false);
+  return (
+    <UserLoggedContext.Provider value={[userLogged, setUserLogged]}>
+      {props.children}
+    </UserLoggedContext.Provider>
+  );
+};
+
