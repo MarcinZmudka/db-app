@@ -2,7 +2,7 @@ import React from "react";
 
 const ButtonList : React.FC = (props) => {
     return (
-        <div>
+        <div className="buttonList">
             {props.children}
         </div>
     )

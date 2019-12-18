@@ -1,0 +1,44 @@
+.rightSideMenu{
+    width: 30vw;
+    background-color: #383838;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    /* height: 90vh; */
+    margin: 0;
+    z-index: -1;
+}
+.menuButton{
+    width: 15vw;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    margin: 3vh 5vw 3vh 5vh;
+    background-color: #8D8D8D;
+    border-radius: 5px;
+    border: none;
+    height: 5vh;
+    color: white;
+    position: relative;
+    cursor: pointer;
+}
+.menuButton::after{
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #00FFF0;
+    z-index: -1;
+}
+.menuButton:hover::after{
+    background-color: #0094FF;
+}
+.box{
+    display: flex;
+    /* height: 100%; */
+}
