@@ -4,7 +4,7 @@ interface IProps {
 }
 const Login_input: React.FC<IProps> = ({set_login}) => {
         return (
-        <input type="text" placeholder="Login" onChange={e => set_login(e.target.value)}/>
+        <input  className={"log_input"} type="text" placeholder="Login" onChange={e => set_login(e.target.value)}/>
     )
 }
 

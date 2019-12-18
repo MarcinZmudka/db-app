@@ -4,7 +4,7 @@ interface IProps {
 }
 const Error_Message  : React.FC<IProps> = ({message}) => {
     return (
-    <div>{message}</div>
+    <div className={"error_box"}>{message}</div>
     )
 }
 export default Error_Message;

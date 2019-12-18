@@ -5,7 +5,7 @@ interface IProps {
 const Log_in_button: React.FC<IProps> = ({check_validation}) => {
 
     return (
-        <button onClick={e => check_validation(e)}>Log in</button>
+        <button className={"log_button"} onClick={e => check_validation(e)}>Log in</button>
     )
 }
 export default Log_in_button;

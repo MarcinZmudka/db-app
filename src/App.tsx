@@ -9,23 +9,24 @@ import GroupOfInputs from "./GroupOfInputs/Group";
 const App: React.FC = () => {
   return (
     <div className="App">
-      Moje DB
       <UserLoggedProvider>
         <Conditional />
       </UserLoggedProvider>
-      <Table values={["Marcin", "Marcin", "Marcin", "Marcin", "Marcin"]} />
+      {/* <Table values={["Marcin", "Marcin", "Marcin", "Marcin", "Marcin"]} />
       <GroupOfInputs
         values={["Marcin", "Marcin1", "Marcin2", "Marcin3", "Marcin4"]}
         buttonName={"Potwierdz"}
         buttonFunction={() => {}}
-      />
+      /> */}
     </div>
   );
 };
 const Conditional: React.FC = () => {
   const [user_logged] = useContext(UserLoggedContext);
   return (
-    <div>{user_logged ? <RoutingManager /> : <Login error_message={""} />}</div>
+    <React.Fragment>
+      {user_logged ? <RoutingManager /> : <Login error_message={""} />}
+    </React.Fragment>
   );
 };
 export default App;
