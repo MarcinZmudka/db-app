@@ -5,40 +5,72 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    /* height: 90vh; */
+    height: 90vh;
     margin: 0;
+    position: relative;
+    /* z-index: -1; */
+}
+.rightSideMenu::after{
+    content: "";
+    width: 100%;
+    height: 110%;
+    position: absolute;
+    top: -10%;
+    left: 0;
+    background-color: #00FFF0;
     z-index: -1;
+    filter: blur(10px);
+}
+.menuButtonBox{
+    position: relative;
 }
 .menuButton{
+    position: relative;
     width: 15vw;
+    height: 5vh;
     text-transform: uppercase;
     font-family: "Roboto", sans-serif;
+    color: white;
     font-weight: 500;
     font-size: 15px;
-    margin: 3vh 5vw 3vh 5vh;
+    padding: 0;
+    margin: 3vh 5vh 3vh 5vh;
     background-color: #8D8D8D;
     border-radius: 5px;
     border: none;
-    height: 5vh;
-    color: white;
-    position: relative;
     cursor: pointer;
+    z-index: 1;
 }
-.menuButton::after{
-    content: "";
+.menuButtonShadow{
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-48%, -39%);
     border-radius: 5px;
+    width: 15vw;
+    height: 5vh;
+    background-color: #00FFF0;
+    z-index: 0;
+}
+.menuButtonLink:hover ~ .menuButtonShadow{
+    background-color: #0094FF;
+}
+.menuButtonLink{
+    text-decoration: none;
     width: 100%;
     height: 100%;
-    background-color: #00FFF0;
-    z-index: -1;
-}
-.menuButton:hover::after{
-    background-color: #0094FF;
+    color: white;
 }
 .box{
     display: flex;
     /* height: 100%; */
+}
+@media (max-width: 800px){
+    .menuButton, .menuButtonShadow{
+        width: 50vw;
+        height: 20vh;
+    }
+    .rightSideMenu{
+        width: 100vw;
+    }
 }

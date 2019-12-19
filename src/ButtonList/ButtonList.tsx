@@ -1,4 +1,5 @@
 import React from "react";
+import "./buttonList.css";
 
 const ButtonList : React.FC = (props) => {
     return (

@@ -10,16 +10,22 @@ const RoutingManager: React.FC = () => {
     <Router>
       <Navbar />
       <div className="box">
+          <Route exact path={["/menu", "/menu/sprzet", "/menu/ludzie", "/menu/raporty"]}>
         <MenuList>
-          <Route path="/menu">
             <MenuButton path={"menu/sprzet"} text={"sprzęt"} />
             <MenuButton path={"menu/ludzie"} text={"ludzie"} />
             <MenuButton path={"menu/raporty"} text={"raporty"} />
-          </Route>
         </MenuList>
+          </Route>
         <ButtonList>
           <Switch>
             <Route path="/menu/sprzet">
+              <MenuButton path={"sprzet1"} text={"sprzęt1"} />
+              <MenuButton path={"ludzie1"} text={"ludzie1"} />
+              <MenuButton path={"raporty1"} text={"raporty1"} />
+              <MenuButton path={"sprzet1"} text={"sprzęt1"} />
+              <MenuButton path={"ludzie1"} text={"ludzie1"} />
+              <MenuButton path={"raporty1"} text={"raporty1"} />
               <MenuButton path={"sprzet1"} text={"sprzęt1"} />
               <MenuButton path={"ludzie1"} text={"ludzie1"} />
               <MenuButton path={"raporty1"} text={"raporty1"} />
