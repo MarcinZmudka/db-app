@@ -58,6 +58,14 @@ const Login: React.FC<IProps> = ({ error_message }) => {
           <Log_in_button check_validation={check_validation} />
         </div>
       </div>
+      <div className="star_box">
+        <div className="star_big"></div>
+        <div className="star_small"></div>
+      </div>
+      <div className="circle_box">
+        <div className="circle_big"></div>
+        <div className="circle_small"></div>
+      </div>
         <div className="footer"></div>
     </React.Fragment>
   );
