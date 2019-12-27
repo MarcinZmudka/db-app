@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Group.css";
 
 interface IProps {
   values: string[],
@@ -24,20 +25,22 @@ const GroupOfInputs: React.FC<IProps> = ({ values, buttonFunction, buttonName })
       }
   }
   return (
-    <div className={""}>
-      {values.map((value, index) => (
-        <input
-          type="text"
-          className={""}
-          onChange={e => {
-            upadateState(e);
-          }}
-          key={index}
-          placeholder={value.toUpperCase()}
-        />
-      ))}
-    <button onClick={()=>{validState(buttonFunction)}}>{buttonName}</button>
-    </div>
+    <>
+      <div className={"box_of_inputs"}>
+        {values.map((value, index) => (
+          <input
+            type="text"
+            className={"input_from_group"}
+            onChange={e => {
+              upadateState(e);
+            }}
+            key={index}
+            placeholder={value.toUpperCase()}
+          />
+        ))}
+      </div>
+      <button className="group_input_button" onClick={()=>{validState(buttonFunction)}}>{buttonName}</button>
+    </>
   );
 };
 export default GroupOfInputs;

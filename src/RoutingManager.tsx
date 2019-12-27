@@ -5,47 +5,119 @@ import MenuList from "./RighSideMenu/MenuList";
 import ButtonList from "./ButtonList/ButtonList";
 import MenuButton from "./RighSideMenu/MenuButton";
 import Navbar from "./navbar/NavbarComponent";
+import GroupOfInputs from "./GroupOfInputs/Group";
+import Title from "./Title/Title";
+
 const RoutingManager: React.FC = () => {
   return (
     <Router>
       <Navbar />
       <div className="box">
-          <Route exact path={["/menu", "/menu/sprzet", "/menu/ludzie", "/menu/twoje_urzadzenia"]}>
-        <MenuList>
+        <Route
+          exact
+          path={[
+            "/menu",
+            "/menu/sprzet",
+            "/menu/ludzie",
+            "/menu/twoje_urzadzenia"
+          ]}
+        >
+          <MenuList>
             <MenuButton path={"menu/sprzet"} text={"sprzęt"} />
             <MenuButton path={"menu/ludzie"} text={"ludzie"} />
             <MenuButton path={"menu/twoje_urzadzenia"} text={"raporty"} />
-        </MenuList>
-          </Route>
+          </MenuList>
+        </Route>
         <ButtonList>
           <Switch>
             <Route path="/menu/sprzet">
               <MenuButton path={"dodaj_urzadzenie"} text={"Dodaj urządzenie"} />
               <MenuButton path={"usun_urzadzenie"} text={"Usuń urządzenie"} />
-              <MenuButton path={"wyszukaj_urzadzenie"} text={"Wyszukaj urządzenie"} />
-              <MenuButton path={"urzadzenia_magazyn"} text={"Wyświetl urządzenia wybraego magazynu"} />
-              <MenuButton path={"wszystkie_urzadznia"} text={"Wyświel wszystkie urządzenia"} />
+              <MenuButton
+                path={"wyszukaj_urzadzenie"}
+                text={"Wyszukaj urządzenie"}
+              />
+              <MenuButton
+                path={"urzadzenia_magazyn"}
+                text={"Wyświetl urządzenia wybraego magazynu"}
+              />
+              <MenuButton
+                path={"wszystkie_urzadznia"}
+                text={"Wyświel wszystkie urządzenia"}
+              />
               <MenuButton path={"statystyki"} text={"Generuj statystyki"} />
-              <MenuButton path={"zmiana_danych"} text={"Zmiana danych urządzenia"} />
+              <MenuButton
+                path={"zmiana_danych"}
+                text={"Zmiana danych urządzenia"}
+              />
             </Route>
             <Route path="/menu/ludzie">
-              <MenuButton path={"zakladanie_konta"} text={"Załóż konto pracownikowi"} />
-              <MenuButton path={"nadaj_role"} text={"Nadaj role pracownikowi"} />
-              <MenuButton path={"odbierz_role"} text={"Odbierz role pracownikowi"} />
-              <MenuButton path={"usun_konto"} text={"Usuń konto pracownikowi"} />
+              <MenuButton
+                path={"zakladanie_konta"}
+                text={"Załóż konto pracownikowi"}
+              />
+              <MenuButton
+                path={"nadaj_role"}
+                text={"Nadaj role pracownikowi"}
+              />
+              <MenuButton
+                path={"odbierz_role"}
+                text={"Odbierz role pracownikowi"}
+              />
+              <MenuButton
+                path={"usun_konto"}
+                text={"Usuń konto pracownikowi"}
+              />
               <MenuButton path={"zmień_konto"} text={"Zmień dane pracownika"} />
             </Route>
             <Route path="/menu/twoje_urzadzenia">
-              <MenuButton path={"zglos_uszkodzenie"} text={"Zgłoś uszkodzenie urządzenia"} />
-              <MenuButton path={"urzadzenia"} text={"Zobacz posiadane urządzenia"} />
+              <MenuButton
+                path={"zglos_uszkodzenie"}
+                text={"Zgłoś uszkodzenie urządzenia"}
+              />
+              <MenuButton
+                path={"urzadzenia"}
+                text={"Zobacz posiadane urządzenia"}
+              />
               <MenuButton path={"oddaj"} text={"Oddaj urządzenie"} />
               {/**<MenuButton path = {"menu"} text = {"POWRÓT"}/> */}
+            </Route>
+          </Switch>
+          <Switch>
+            <Route path="/dodaj_urzadzenie">
+              <Title title="Tutaj możesz dodać urządzenie" button={true} />
+              <GroupOfInputs
+                values={[
+                  "Typ",
+                  "Model",
+                  "Producent",
+                  "Opis techniczny",
+                  "Stan techniczny",
+                  "Numer Ewidencyjny"
+                ]}
+                buttonName="Dodaj urządzenie"
+                buttonFunction={() => {}}
+              />
+            </Route>
+            <Route path="/zakladanie_konta">
+            <Title title="Tutaj możesz dodać nowego użytkownika" button={true} />
+              <GroupOfInputs
+                values={[
+                  "Imię",
+                  "Nazwisko",
+                  "Pesel",
+                  "Dział firmy",
+                  "Stanowisko"
+                ]}
+                buttonName="Dodaj pracownika"
+                buttonFunction={() => {}}
+              />
             </Route>
           </Switch>
         </ButtonList>
       </div>
       <div className="circle_after_login_box">
-      <div className="circle"></div>
+        <div className="circle"></div>
       </div>
     </Router>
   );
