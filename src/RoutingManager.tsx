@@ -7,6 +7,8 @@ import MenuButton from "./RighSideMenu/MenuButton";
 import Navbar from "./navbar/NavbarComponent";
 import GroupOfInputs from "./GroupOfInputs/Group";
 import Title from "./Title/Title";
+import { ChoosenDataProvider } from "./context/choosenDataFromTable";
+import TableAndInput from "./TableAndInput/TableAndInput";
 
 const RoutingManager: React.FC = () => {
   return (
@@ -42,7 +44,7 @@ const RoutingManager: React.FC = () => {
                 text={"Wyświetl urządzenia wybraego magazynu"}
               />
               <MenuButton
-                path={"wszystkie_urzadznia"}
+                path={"wszystkie_urzadzenia"}
                 text={"Wyświel wszystkie urządzenia"}
               />
               <MenuButton path={"statystyki"} text={"Generuj statystyki"} />
@@ -68,7 +70,7 @@ const RoutingManager: React.FC = () => {
                 path={"usun_konto"}
                 text={"Usuń konto pracownikowi"}
               />
-              <MenuButton path={"zmień_konto"} text={"Zmień dane pracownika"} />
+              <MenuButton path={"zmien_konto"} text={"Zmień dane pracownika"} />
             </Route>
             <Route path="/menu/twoje_urzadzenia">
               <MenuButton
@@ -100,7 +102,10 @@ const RoutingManager: React.FC = () => {
               />
             </Route>
             <Route path="/zakladanie_konta">
-            <Title title="Tutaj możesz dodać nowego użytkownika" button={true} />
+              <Title
+                title="Tutaj możesz dodać nowego użytkownika"
+                button={true}
+              />
               <GroupOfInputs
                 values={[
                   "Imię",
@@ -112,6 +117,11 @@ const RoutingManager: React.FC = () => {
                 buttonName="Dodaj pracownika"
                 buttonFunction={() => {}}
               />
+            </Route>
+            <Route path="/zmien_konto">
+              <ChoosenDataProvider>
+                <TableAndInput/>
+              </ChoosenDataProvider>
             </Route>
           </Switch>
         </ButtonList>
