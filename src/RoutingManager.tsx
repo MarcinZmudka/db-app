@@ -9,6 +9,7 @@ import GroupOfInputs from "./GroupOfInputs/Group";
 import Title from "./Title/Title";
 import { ChoosenDataProvider } from "./context/choosenDataFromTable";
 import TableAndInput from "./TableAndInput/TableAndInput";
+import Fetcher from "./Fetcher/Fetcher";
 
 const RoutingManager: React.FC = () => {
   return (
@@ -119,8 +120,8 @@ const RoutingManager: React.FC = () => {
               />
             </Route>
             <Route path="/zmien_konto">
-              <ChoosenDataProvider>
-                <TableAndInput/>
+              <ChoosenDataProvider values = {["Imię1", "Nazwisko", "Pesel", "Dział firmy", "Stanowisko"]}>
+                <Fetcher/>
               </ChoosenDataProvider>
             </Route>
           </Switch>

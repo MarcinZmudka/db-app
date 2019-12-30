@@ -12,8 +12,8 @@ const App: React.FC = () => {
       <UserLoggedProvider>
         <Conditional />
       </UserLoggedProvider>
-      {/* <Table values={["Marcin", "Marcin", "Marcin", "Marcin", "Marcin"]} />
-      <GroupOfInputs
+      
+      {/* <GroupOfInputs
         values={["Marcin", "Marcin1", "Marcin2", "Marcin3", "Marcin4"]}
         buttonName={"Potwierdz"}
         buttonFunction={() => {}}

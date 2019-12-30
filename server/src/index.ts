@@ -21,7 +21,6 @@ const config = {
 };
 
 app.get("/", async function(req, res) {
-
   const login = req.query.login;
   const password = req.query.password;
   try {
@@ -38,7 +37,11 @@ app.get("/", async function(req, res) {
     console.log(err);
   }
 });
-
+app.get("/query", function(req, res) {
+  setTimeout(()=> {
+    res.send({sql: "12345"});
+  }, 1000);
+})
 app.listen(port, err => {
   if (err) {
     return console.error(err);
