@@ -15,7 +15,7 @@ code {
 .circle_after_login_box{
   width: 10vw;
   height: 10vw;
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   overflow: hidden;

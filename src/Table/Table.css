@@ -21,3 +21,6 @@
 .table_box{
     margin-top: 5vh;
 }
+.table_values:hover > .table_value{
+    background-color: #26EDD5;
+}

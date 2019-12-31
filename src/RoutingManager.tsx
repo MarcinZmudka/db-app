@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import MenuList from "./RighSideMenu/MenuList";
 import ButtonList from "./ButtonList/ButtonList";
@@ -8,8 +8,10 @@ import Navbar from "./navbar/NavbarComponent";
 import GroupOfInputs from "./GroupOfInputs/Group";
 import Title from "./Title/Title";
 import { ChoosenDataProvider } from "./context/choosenDataFromTable";
-import TableAndInput from "./TableAndInput/TableAndInput";
-import Fetcher from "./Fetcher/Fetcher";
+import Fetcher from "./Fetcher/ChangeUserData";
+import FetcherDevice from "./Fetcher/ChangeDeviceData";
+import Table from "./Table/Table";
+import ShowDevices from "./ShowDevices/ShowDevices";
 
 const RoutingManager: React.FC = () => {
   return (
@@ -120,9 +122,40 @@ const RoutingManager: React.FC = () => {
               />
             </Route>
             <Route path="/zmien_konto">
-              <ChoosenDataProvider values = {["Imię1", "Nazwisko", "Pesel", "Dział firmy", "Stanowisko"]}>
-                <Fetcher/>
+              <ChoosenDataProvider
+                values={[
+                  "Imię",
+                  "Nazwisko",
+                  "Pesel",
+                  "Dział firmy",
+                  "Stanowisko"
+                ]}
+              >
+                <Fetcher />
               </ChoosenDataProvider>
+            </Route>
+            <Route path="/zmiana_danych">
+              <ChoosenDataProvider
+                values={[
+                  "Typ",
+                  "Model",
+                  "Producent",
+                  "Opis techniczny",
+                  "Stan techniczny",
+                  "Numer Ewidencyjny"
+                ]}
+              >
+                <FetcherDevice />
+              </ChoosenDataProvider>
+            </Route>
+            <Route path="/usun_urzadzenie">
+              <Title title="Tutaj możesz usunąć urządzenie" button={true} />
+              <ChoosenDataProvider values={[]}>
+                {/* <Table values={["12","12","12","12","12","12","12"]} title={["1","2"]}></Table> */}
+              </ChoosenDataProvider>
+            </Route>
+            <Route path="/wszystkie_urzadzenia">
+              <ShowDevices/>
             </Route>
           </Switch>
         </ButtonList>

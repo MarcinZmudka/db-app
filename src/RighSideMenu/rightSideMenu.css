@@ -63,6 +63,8 @@
 }
 .box{
     display: flex;
+    justify-content: center;
+    align-items: center;
     /* height: 100%; */
 }
 @media (max-width: 800px){

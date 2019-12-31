@@ -1,5 +1,4 @@
 nav{
-    width: 100vw;
     background-color: #383838;
     height: 10vh;
     display: flex;
@@ -7,6 +6,7 @@ nav{
     align-items: center;
     position: relative;
     flex-wrap: wrap;
+    /* width: 100vw; */
     /* z-index: 100; */
     /* box-shadow: 0px 0px 10px #00FFF0; */
 }
