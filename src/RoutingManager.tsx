@@ -10,8 +10,11 @@ import Title from "./Title/Title";
 import { ChoosenDataProvider } from "./context/choosenDataFromTable";
 import Fetcher from "./Fetcher/ChangeUserData";
 import FetcherDevice from "./Fetcher/ChangeDeviceData";
-import Table from "./Table/Table";
+import MyDevicesFetcher from "./Fetcher/MyDevicesFetcher";
 import ShowDevices from "./ShowDevices/ShowDevices";
+import Boxer from "./BoxeOfSelectorAndTable/Boxer";
+import Container from "./BoxeOfSelectorAndTable/Container";
+import ShowSearchedDevices from "./ShowDevices/ShowSearchedDevices";
 
 const RoutingManager: React.FC = () => {
   return (
@@ -28,9 +31,9 @@ const RoutingManager: React.FC = () => {
           ]}
         >
           <MenuList>
-            <MenuButton path={"menu/sprzet"} text={"sprzęt"} />
-            <MenuButton path={"menu/ludzie"} text={"ludzie"} />
-            <MenuButton path={"menu/twoje_urzadzenia"} text={"raporty"} />
+            <MenuButton path={"menu/sprzet"} text={"Sprzęt"} />
+            <MenuButton path={"menu/ludzie"} text={"Ludzie"} />
+            <MenuButton path={"menu/twoje_urzadzenia"} text={"Twoje urządzenia"} />
           </MenuList>
         </Route>
         <ButtonList>
@@ -134,6 +137,7 @@ const RoutingManager: React.FC = () => {
                 <Fetcher />
               </ChoosenDataProvider>
             </Route>
+            /**urządzenia  */
             <Route path="/zmiana_danych">
               <ChoosenDataProvider
                 values={[
@@ -151,11 +155,44 @@ const RoutingManager: React.FC = () => {
             <Route path="/usun_urzadzenie">
               <Title title="Tutaj możesz usunąć urządzenie" button={true} />
               <ChoosenDataProvider values={[]}>
-                {/* <Table values={["12","12","12","12","12","12","12"]} title={["1","2"]}></Table> */}
               </ChoosenDataProvider>
             </Route>
             <Route path="/wszystkie_urzadzenia">
-              <ShowDevices/>
+              <Title title="Tutaj możesz zobaczyć wszystkie urządzenia" button={true} />
+              <ChoosenDataProvider values={[]}>
+                <ShowDevices query=""/>
+              </ChoosenDataProvider>
+            </Route>
+            <Route path="/urzadzenia_magazyn">
+              <Title title="Urządzenia wybranego magazynu" button={true} />
+              <Boxer/>
+            </Route>
+            <Route path="/wyszukaj_urzadzenie">
+                <ShowSearchedDevices query=""/>
+            </Route>
+            /**User routes */
+            <Route path="/zglos_uszkodzenie">
+              <Title title="Zgłoś uszkodzenie urządzenia" button={true}></Title>
+              <Container text="Potwierdź zepsucie" query=""/>
+            </Route>
+            <Route path="/oddaj">
+              <Title title="Oddaj swoje urządzenie" button={true}></Title>
+              <Container text="Potwierdź zepsucie" query=""/>
+            </Route>
+            <Route path="/urzadzenia">
+              <Title title="Tutaj możesz zobaczyć swoje urządzenia" button={true}/>
+              <ChoosenDataProvider
+                values={[
+                  "Typ",
+                  "Model",
+                  "Producent",
+                  "Opis techniczny",
+                  "Stan techniczny",
+                  "Numer Ewidencyjny"
+                ]}
+              >
+                <MyDevicesFetcher/>
+              </ChoosenDataProvider>
             </Route>
           </Switch>
         </ButtonList>

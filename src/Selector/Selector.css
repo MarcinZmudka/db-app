@@ -1,0 +1,11 @@
+.selector_select{
+    display: block;
+    width: 20vw;
+    height: 10vh;
+    margin: 1vw;
+    background: #DEDEDE;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    filter: drop-shadow(2px 2px 3px rgba(0,0,0,1));
+}

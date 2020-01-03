@@ -14,7 +14,6 @@ const GroupOfInputs: React.FC<IProps> = ({
 }) => {
   const [state, setState] = useState({});
   const upadateState = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(event);
     const oldState = state;
     const attribute = event.currentTarget.placeholder;
     const value = event.currentTarget.value;
