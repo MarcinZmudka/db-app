@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Table from "../Table/Table";
+import { ChoosenDataProvider } from "../context/choosenDataFromTable";
 
 interface IProps {
   query: string;
@@ -127,17 +128,19 @@ const ShowDevices: React.FC<IProps> = ({ query }) => {
       ]);
     });
   return (
-    <Table
-      titles={[
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny"
-      ]}
-      values={values}
-    ></Table>
+    <ChoosenDataProvider values={[]}>
+      <Table
+        titles={[
+          "Typ",
+          "Model",
+          "Producent",
+          "Opis techniczny",
+          "Stan techniczny",
+          "Numer Ewidencyjny"
+        ]}
+        values={values}
+      ></Table>
+    </ChoosenDataProvider>
   );
 };
 export default ShowDevices;

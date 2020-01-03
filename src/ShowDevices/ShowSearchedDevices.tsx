@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Table from "../Table/Table";
 import GroupOfInputs from "../GroupOfInputs/Group";
 import groupValues from "../Table/gropValues";
+import { ChoosenDataProvider } from "../context/choosenDataFromTable";
 
 interface IProps {
   query: string;
@@ -151,6 +152,7 @@ const ShowDevices: React.FC<IProps> = ({ query }) => {
     });
   return (
     <>
+    <ChoosenDataProvider values={[]}>
       <GroupOfInputs
         values={["TYP", "MODEL", "NUMER EWIDENCYJNY"]}
         buttonName="Szukaj"
@@ -167,6 +169,7 @@ const ShowDevices: React.FC<IProps> = ({ query }) => {
         ]}
         values={searchedVales}
       ></Table>
+    </ChoosenDataProvider>
     </>
   );
 };
