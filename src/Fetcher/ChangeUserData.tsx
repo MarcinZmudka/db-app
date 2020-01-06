@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import Title from "../Title/Title";
-import GroupOfInputs from "../GroupOfInputs/Group";
+import GroupOfInputs from "../GroupOfInputs/GroupChange";
 import Table from "../Table/Table";
 import { ChoosenDataContext } from "../context/choosenDataFromTable";
 

@@ -15,6 +15,7 @@ import ShowDevices from "./ShowDevices/ShowDevices";
 import Boxer from "./BoxeOfSelectorAndTable/Boxer";
 import Container from "./BoxeOfSelectorAndTable/Container";
 import ShowSearchedDevices from "./ShowDevices/ShowSearchedDevices";
+import ButtonContext from "./Buttons/ButtonContextSql";
 
 const RoutingManager: React.FC = () => {
   return (
@@ -47,11 +48,11 @@ const RoutingManager: React.FC = () => {
               />
               <MenuButton
                 path={"urzadzenia_magazyn"}
-                text={"Wyświetl urządzenia wybraego magazynu"}
+                text={"Wyświetl urządzenia wybranego magazynu"}
               />
               <MenuButton
                 path={"wszystkie_urzadzenia"}
-                text={"Wyświel wszystkie urządzenia"}
+                text={"Wyświetl wszystkie urządzenia"}
               />
               <MenuButton path={"statystyki"} text={"Generuj statystyki"} />
               <MenuButton
@@ -155,6 +156,8 @@ const RoutingManager: React.FC = () => {
             <Route path="/usun_urzadzenie">
               <Title title="Tutaj możesz usunąć urządzenie" button={true} />
               <ChoosenDataProvider values={[]}>
+                <ButtonContext buttonText="usun wybrane urzadzenie" query=""/>
+                <MyDevicesFetcher/>
               </ChoosenDataProvider>
             </Route>
             <Route path="/wszystkie_urzadzenia">
@@ -168,6 +171,7 @@ const RoutingManager: React.FC = () => {
               <Boxer/>
             </Route>
             <Route path="/wyszukaj_urzadzenie">
+                <Title title="Tutaj możesz wyszukać urzadzenie" button={true}/>
                 <ShowSearchedDevices query=""/>
             </Route>
             /**User routes */
@@ -177,7 +181,7 @@ const RoutingManager: React.FC = () => {
             </Route>
             <Route path="/oddaj">
               <Title title="Oddaj swoje urządzenie" button={true}></Title>
-              <Container text="Potwierdź zepsucie" query=""/>
+              <Container text="Potwierdź oddanie" query=""/>
             </Route>
             <Route path="/urzadzenia">
               <Title title="Tutaj możesz zobaczyć swoje urządzenia" button={true}/>

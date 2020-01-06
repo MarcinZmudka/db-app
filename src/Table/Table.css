@@ -4,6 +4,8 @@
   flex-wrap: wrap;
   justify-content: stretch;
   align-items: stretch;
+  cursor: pointer;
+  transition: all .5s ease-in-out;
 }
 .table_titles {
   font-size: 20px;

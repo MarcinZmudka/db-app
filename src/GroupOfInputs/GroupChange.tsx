@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Group.css";
 
 interface IProps {
@@ -12,21 +12,24 @@ const GroupOfInputs: React.FC<IProps> = ({
   buttonFunction,
   buttonName
 }) => {
-  const [state, setState] = useState({});
-  const upadateState = (event: React.FormEvent<HTMLInputElement>) => {
-    const oldState = state;
-    const attribute = event.currentTarget.placeholder;
+  const [inputValues, setInputValues] = useState([...values]);
+  const updateState = (event: React.FormEvent<HTMLInputElement>, index: number) => {
     const value = event.currentTarget.value;
-    Object.assign(oldState, { [attribute]: value });
-    setState(oldState);
+    const newState = [...inputValues];
+    newState[index] = value;
+    setInputValues(newState);
   };
   const validState = (callback: Function) => {
-    callback(state);
-    // if (values.length == Object.keys(state).length) {
-    // } else {
-    //   console.log("nie wpisałeś danych do wszystkich pól");
-    // }
+    if (values.length == Object.keys(inputValues).length) {
+      callback();
+    } else {
+      console.log("nie wpisałeś danych do wszystkich pól");
+    }
   };
+  useEffect(()=>{
+      setInputValues([...values])
+  }, [values])
+
   return (
     <>
       <div className={"box_of_inputs"}>
@@ -35,9 +38,10 @@ const GroupOfInputs: React.FC<IProps> = ({
             type="text"
             className={"input_from_group"}
             onChange={e => {
-              upadateState(e);
+              updateState(e, index);
             }}
             key={index}
+            value={inputValues[index]}
             placeholder={value.toUpperCase()}
           />
         ))}

@@ -39,7 +39,7 @@ const Table: React.FC<IProps> = ({ values, titles }) => {
       </div>
       {groupedValues.map((value, index) =>
         index <= page && index >= page - 15 ? (
-          <Row values={value} key={index}></Row>
+          <Row values={value} key={index} key1={index}></Row>
         ) : (
           ""
         )
