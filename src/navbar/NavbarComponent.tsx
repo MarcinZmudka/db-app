@@ -8,8 +8,8 @@ const Navbar: React.FC = () => {
     const [, set_user_logged] = useContext(UserLoggedContext);
     return (
         <nav>
-            <div className="company">PASTACH</div>
-            <div className="login_navbar_title">System rezerwacji urządzeń</div>
+            <div className="company">PASTECH</div>
+            <div className="login_navbar_title">System Ewidencji Urządzeń</div>
             <LogOutButton set_user_logged={set_user_logged}/>
             {/* <MenuButton path={"menu"} text={"POWRÓT"} />        */}
         </nav>
