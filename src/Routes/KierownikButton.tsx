@@ -31,14 +31,7 @@ const KierownikButtons: React.FC = () => {
         <MenuButton path={"usun_konto"} text={"Usuń konto pracownikowi"} />
         <MenuButton path={"zmien_konto"} text={"Zmień dane pracownika"} />
       </Route>
-      <Route path="/menu/twoje_urzadzenia">
-        <MenuButton
-          path={"zglos_uszkodzenie"}
-          text={"Zgłoś uszkodzenie urządzenia"}
-        />
-        <MenuButton path={"urzadzenia"} text={"Zobacz posiadane urządzenia"} />
-        <MenuButton path={"oddaj"} text={"Oddaj urządzenie"} />
-      </Route>
+      <UserButtons/>
     </Switch>
   );
 };

@@ -8,6 +8,10 @@ import Navbar from "./navbar/NavbarComponent";
 import KierownikRoutes from "./Routes/Kierownik";
 import UserRoutes from "./Routes/User";
 import KierownikButtons from "./Routes/KierownikButton";
+import MagazynierButtons from "./Routes/MagazynierButtons";
+import MagazynierRoutes from "./Routes/MagazynierRoutes";
+import SerwisantButtons from "./Routes/SerwisantButtons";
+import SerwisantRoutes from "./Routes/SerwisantRoutes";
 
 const RoutingManager: React.FC = () => {
   return (
@@ -25,14 +29,17 @@ const RoutingManager: React.FC = () => {
         >
           <MenuList>
             <MenuButton path={"menu/sprzet"} text={"Sprzęt"} />
-            <MenuButton path={"menu/ludzie"} text={"Ludzie"} />
+            {/* <MenuButton path={"menu/ludzie"} text={"Ludzie"} /> */}
             <MenuButton path={"menu/twoje_urzadzenia"} text={"Twoje urządzenia"} />
           </MenuList>
         </Route>
         <ButtonList>
-          <KierownikButtons/>
+          <SerwisantButtons/>
+          {/* <MagazynierButtons/> */}
+          {/* <KierownikButtons/> */}
           <Switch>
-            <KierownikRoutes/>
+            {/* <MagazynierRoutes/> */}
+            <SerwisantRoutes />
           </Switch>
         </ButtonList>
       </div>
