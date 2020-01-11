@@ -32,61 +32,32 @@ const FetcherComponent: React.FC<IProps> = ({ fetched, tableValue }) => {
     </>
   );
 };
-
-const Fetcher: React.FC = () => {
+interface IPropsF {
+  query: string;
+}
+const Fetcher: React.FC<IPropsF> = ({query}) => {
   const [fetched, setFetched] = useState(false);
   const [tableValue, setTableValue] = useState(["1"]);
   useEffect(() => {
     if (!fetched)
-    fetch("http://localhost:3001/query")
+    fetch(`http://localhost:3001/query?query=${query}`)
       .then(res => {
         return res.json();
       })
       .then(data => {
+        console.log(data);
+        const table = data.data.map((value: any) => {
+          return [
+            value.imie,
+            value.nazwisko,
+            value.pesel,
+            value.id_dzialu+"",
+            value.id_stanowiska+""
+          ];
+        });
+        console.log(table);
         setFetched(true);
-        setTableValue([
-          "Marcin1",
-          "Marcin2",
-          "Marcin3",
-          "Marcin4",
-          "Marcin5",
-          "Marcin6",
-          "Marcin7",
-          "Marcin8",
-          "Marcin9",
-          "Marcin10",
-          "Marcin1",
-          "Marcin2",
-          "Marcin3",
-          "Marcin4",
-          "Marcin5",
-          "Marcin6",
-          "Marcin7",
-          "Marcin8",
-          "Marcin9",
-          "Marcin10",
-          "Marcin1",
-          "Marcin2",
-          "Marcin3",
-          "Marcin4",
-          "Marcin5",
-          "Marcin6",
-          "Marcin7",
-          "Marcin8",
-          "Marcin9",
-          "Marcin10",
-          "Marcin1",
-          "Marcin2",
-          "Marcin3",
-          "Marcin4",
-          "Marcin5",
-          "Marcin6",
-          "Marcin7",
-          "Marcin8",
-          "Marcin9",
-          "Marcin10"
-        ]);
-        // console.log(data, fetched);
+        setTableValue(table.flat(Infinity));
       });
   })
   return <FetcherComponent fetched={fetched} tableValue={tableValue} />;

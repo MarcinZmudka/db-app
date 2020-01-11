@@ -23,9 +23,10 @@ const App: React.FC = () => {
 };
 const Conditional: React.FC = () => {
   const [user_logged] = useContext(UserLoggedContext);
+
   return (
     <React.Fragment>
-      {user_logged ? <RoutingManager /> : <Login error_message={""} />}
+      {user_logged !== false ? <RoutingManager job_id ={user_logged.job_id}/> : <Login error_message={""} />}
     </React.Fragment>
   );
 };

@@ -21,6 +21,7 @@ const GroupOfInputs: React.FC<IProps> = ({
     setState(oldState);
   };
   const validState = (callback: Function) => {
+    console.log(state);
     callback(state);
     // if (values.length == Object.keys(state).length) {
     // } else {

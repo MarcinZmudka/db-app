@@ -9,8 +9,9 @@ const GetDevice: React.FC = () => {
       <Selector
         text="Wybierz urządzenie"
         updateChoosenValue={setChoosenValue}
+        query=""
       />
-      <ButtonContext query="" buttonText="Zgłoś uszkodzenie" />
+      <ButtonContext query="" index ={1} buttonText="Zgłoś uszkodzenie" />
     </>
   );
 };

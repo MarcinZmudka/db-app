@@ -5,12 +5,15 @@ import { ChoosenDataProvider } from "../context/choosenDataFromTable";
 import Fetcher from "../Fetcher/ChangeUserData";
 import FetcherDevice from "../Fetcher/ChangeDeviceData";
 import MyDevicesFetcher from "../Fetcher/MyDevicesFetcher";
+import MyEmployeesFetcher from "../Fetcher/MyEmployeesFetcher";
 import ShowDevices from "../ShowDevices/ShowDevices";
 import Boxer from "../BoxeOfSelectorAndTable/Boxer";
 import { Route } from "react-router-dom";
 import ShowSearchedDevices from "../ShowDevices/ShowSearchedDevices";
 import ButtonContext from "../Buttons/ButtonContextSql";
 import UserRoutes from "./User";
+import addDevice from "../sqlFunctions/addDevice";
+import addEmployer from "../sqlFunctions/addEmployer";
 const KierownikRoutes: React.FC = () => {
   return (
     <>
@@ -21,34 +24,46 @@ const KierownikRoutes: React.FC = () => {
             "Typ",
             "Model",
             "Producent",
-            "Opis techniczny",
-            "Stan techniczny",
-            "Numer Ewidencyjny"
+            "Opis",
+            "Numer_Ewidencyjny",
+            "Magazyn"
           ]}
           buttonName="Dodaj urządzenie"
-          buttonFunction={() => {}}
+          buttonFunction={addDevice}
         />
       </Route>
       <Route path="/zakladanie_konta">
         <Title title="Tutaj możesz dodać nowego użytkownika" button={true} />
         <GroupOfInputs
-          values={["Imię", "Nazwisko", "Pesel", "Dział firmy", "Stanowisko"]}
+          values={[
+            "Imię",
+            "Nazwisko",
+            "Pesel",
+            "Dział_firmy",
+            "Stanowisko",
+            "Magazyn",
+            "Filia"
+          ]}
           buttonName="Dodaj pracownika"
-          buttonFunction={() => {}}
+          buttonFunction={addEmployer}
         />
       </Route>
       <Route path="/zmien_konto">
         <ChoosenDataProvider
           values={["Imię", "Nazwisko", "Pesel", "Dział firmy", "Stanowisko"]}
         >
-          <Fetcher />
+          <Fetcher query="select * from pracownicy" />
         </ChoosenDataProvider>
       </Route>
       <Route path="/usun_konto">
-      <Title title="Tutaj możesz usunąć pracownika" button={true} />
+        <Title title="Tutaj możesz usunąć pracownika" button={true} />
         <ChoosenDataProvider values={[]}>
-          <ButtonContext buttonText="usun wybranego pracownika" query="" />
-          <MyDevicesFetcher />
+          <ButtonContext
+            buttonText="usun wybranego pracownika"
+            query="delete from pracownicy where pesel ="
+            index={2}
+          />
+          <MyEmployeesFetcher query="select * from pracownicy" />
         </ChoosenDataProvider>
       </Route>
       <Route path="/zmiana_danych">
@@ -59,17 +74,22 @@ const KierownikRoutes: React.FC = () => {
             "Producent",
             "Opis techniczny",
             "Stan techniczny",
-            "Numer Ewidencyjny"
+            "Numer Ewidencyjny",
+            "Status"
           ]}
         >
-          <FetcherDevice />
+          <FetcherDevice query="select * from sprzet" />
         </ChoosenDataProvider>
       </Route>
       <Route path="/usun_urzadzenie">
         <Title title="Tutaj możesz usunąć urządzenie" button={true} />
         <ChoosenDataProvider values={[]}>
-          <ButtonContext buttonText="usun wybrane urzadzenie" query="" />
-          <MyDevicesFetcher />
+          <ButtonContext
+            buttonText="Usuń wybrane urządzenie"
+            query="delete from sprzet where nr_ewidencyjny ="
+            index={5}
+          />
+          <MyDevicesFetcher query="select * from sprzet" />
         </ChoosenDataProvider>
       </Route>
       <Route path="/wszystkie_urzadzenia">
@@ -78,7 +98,7 @@ const KierownikRoutes: React.FC = () => {
           button={true}
         />
         <ChoosenDataProvider values={[]}>
-          <ShowDevices query="" />
+          <ShowDevices query="select * from sprzet" />
         </ChoosenDataProvider>
       </Route>
       <Route path="/urzadzenia_magazyn">
@@ -87,9 +107,9 @@ const KierownikRoutes: React.FC = () => {
       </Route>
       <Route path="/wyszukaj_urzadzenie">
         <Title title="Tutaj możesz wyszukać urzadzenie" button={true} />
-        <ShowSearchedDevices query="" />
+        <ShowSearchedDevices query="select * from sprzet" />
       </Route>
-      <UserRoutes/>
+      <UserRoutes />
     </>
   );
 };

@@ -32,64 +32,35 @@ const FetcherDeviceComponent: React.FC<IProps> = ({ tableValue, fetched }) => {
     </>
   );
 };
-
-//zmienić to gówno
-const FetcherDevice: React.FC = () => {
-    const [fetched, setFetched] = useState(false);
-    const [tableValue, setTableValue] = useState(["1"]);
-    useEffect(() => {
-      if (!fetched)
-      fetch("http://localhost:3001/query")
+interface IPropsF {
+  query: string;
+}
+const FetcherDevice: React.FC<IPropsF> = ({ query }) => {
+  const [fetched, setFetched] = useState(false);
+  const [tableValue, setTableValue] = useState(["1"]);
+  useEffect(() => {
+    if (!fetched)
+      fetch(`http://localhost:3001/query?query=${query}`)
         .then(res => {
           return res.json();
         })
         .then(data => {
+          console.log(data);
+          const table = data.data.map((value: any) => {
+            return [
+              value.typ,
+              value.model,
+              value.nazwa_producenta,
+              "value.opis_techniczny",
+              value.stan_techniczny,
+              value.nr_ewidencyjny
+            ];
+          });
+          console.log(table);
           setFetched(true);
-          setTableValue([
-            "Marcin1",
-            "Marcin2",
-            "Marcin3",
-            "Marcin4",
-            "Marcin5",
-            "Marcin6",
-            "Marcin7",
-            "Marcin8",
-            "Marcin9",
-            "Marcin10",
-            "Marcin1",
-            "Marcin2",
-            "Marcin3",
-            "Marcin4",
-            "Marcin5",
-            "Marcin6",
-            "Marcin7",
-            "Marcin8",
-            "Marcin9",
-            "Marcin10",
-            "Marcin1",
-            "Marcin2",
-            "Marcin3",
-            "Marcin4",
-            "Marcin5",
-            "Marcin6",
-            "Marcin7",
-            "Marcin8",
-            "Marcin9",
-            "Marcin10",
-            "Marcin1",
-            "Marcin2",
-            "Marcin3",
-            "Marcin4",
-            "Marcin5",
-            "Marcin6",
-            "Marcin7",
-            "Marcin8",
-            "Marcin9",
-            "Marcin10"
-          ]);
-          // console.log(data, fetched);
+          setTableValue(table.flat(Infinity));
         });
-    });
+  });
   return <FetcherDeviceComponent fetched={fetched} tableValue={tableValue} />;
 };
 export default FetcherDevice;

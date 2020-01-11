@@ -8,9 +8,9 @@ const GiveOutDevice: React.FC = () => {
     const [choosenDevice, setChoosenDevice] = useState(null);
     return (
         <>
-            <Selector text="Wybierz pracownika" updateChoosenValue={()=>{}} />
-            <Selector text="Wybierz urządzenie" updateChoosenValue={()=>{}}/>
-            <ButtonContext query="" buttonText="Wydaj" />
+            <Selector text="Wybierz pracownika" updateChoosenValue={()=>{}} query="" />
+            <Selector text="Wybierz urządzenie" updateChoosenValue={()=>{}} query="" />
+            <ButtonContext query="" index={0} buttonText="Wydaj" />
         </>
     )
 }

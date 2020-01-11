@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "../Table/Table";
 import { ChoosenDataProvider } from "../context/choosenDataFromTable";
 
@@ -7,126 +7,29 @@ interface IProps {
 }
 const ShowDevices: React.FC<IProps> = ({ query }) => {
   const [values, setValues] = useState([""]);
-  fetch(`http://localhost:3001/query?${query}`)
-    .then(res => res.json())
-    .then(data => {
-      setValues([
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny",
-        "Typ",
-        "Model",
-        "Producent",
-        "Opis techniczny",
-        "Stan techniczny",
-        "Numer Ewidencyjny"
-      ]);
-    });
+  useEffect(() => {
+    if(values.length == 1)
+      fetch(`http://localhost:3001/query?query=${query}`)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          console.log(data);
+          const table = data.data.map((value: any) => {
+            return [
+              value.typ,
+              value.model,
+              value.nazwa_producenta,
+              "value.opis_techniczny",
+              value.stan_techniczny,
+              value.nr_ewidencyjny
+            ];
+          });
+          console.log(table);
+          setValues(table.flat(Infinity));
+        });
+  }, [values]);
+
   return (
     <ChoosenDataProvider values={[]}>
       <Table

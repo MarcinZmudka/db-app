@@ -15,7 +15,7 @@ const Container: React.FC<IProps> = ({text, query}) => {
     }
     return(
         <>
-            <Selector updateChoosenValue={updateBrokenDevice} text="Wybierz urządzenie"/>
+            <Selector updateChoosenValue={updateBrokenDevice} text="Wybierz urządzenie" query=""/>
             <button onClick={()=> sendQuery()} className="group_input_button">{text}</button>
         </>
     )

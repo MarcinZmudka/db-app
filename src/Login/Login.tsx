@@ -24,10 +24,10 @@ const Login: React.FC<IProps> = ({ error_message }) => {
       setError("Zbyt krótkie hasło");
     }
     const data_valid = await db_conector.check_login_pass(login, password);
-    if (data_valid) {
-      setUserLogged(true);
-    } else {
+    if (data_valid === false) {
       setError("Niepoprawne dane do logowania");
+    } else {
+      setUserLogged(data_valid);
     }
   };
   const valid = (text: string) => {

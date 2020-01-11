@@ -6,18 +6,10 @@ app.use(cors());
 const port = 3001;
 const sql = require("mssql");
 const config = {
-  user: "adminazurebaza",
-  password: "Test12345",
-  server: "azuretestbazy.database.windows.net",
-  database: "TEST",
-  pool: {
-    max: 10,
-    min: 0,
-    idleTimeoutMillis: 30000
-  },
-  options: {
-    encrypt: true
-  }
+  user: "sa",
+  password: "12345678",
+  server: "localhost\\PASTACH_INS",
+  database: "Pastach_db"
 };
 
 app.get("/", async function(req, res) {
@@ -25,23 +17,38 @@ app.get("/", async function(req, res) {
   const password = req.query.password;
   try {
     const pool = await sql.connect(config);
-    const response = await pool.request().query(`select * from users`);
-    if(response.recordset[0].login == login &&response.recordset[0].password == password){
-      res.send(true);
+    const data = await pool.request().query(`select * from uzytkownicy`);
+    for (let i = 0; i < data.recordset.length; i++) {
+      if (
+        data.recordset[i].nazwa_uzytkownika === login &&
+        data.recordset[i].haslo === password
+      ) {
+        console.log(Math.random(), "logowanko");
+        const id = data.recordset[i].id_uzytkownika;
+        const data1 = await pool
+          .request()
+          .query(
+            `select id_stanowiska from pracownicy where id_pracownika = ${id}`
+          );
+        const job_id = data1.recordset[0].id_stanowiska;
+        await sql.close();
+        return res.send({ id, job_id: 1 });
+      }
     }
-    else{
-      res.send(false);
-    }
+    res.send(false);
     await sql.close();
   } catch (err) {
     console.log(err);
   }
 });
-app.get("/query", function(req, res) {
-  setTimeout(()=> {
-    res.send({sql: "12345"});
-  }, 1000);
-})
+app.get("/query", async function(req, res) {
+  const query = req.query.query;
+  const pool = await sql.connect(config);
+  const data = await pool.request().query(query);
+  console.log(data);
+  res.send({ data: data.recordset });
+  await sql.close();
+});
 app.listen(port, err => {
   if (err) {
     return console.error(err);

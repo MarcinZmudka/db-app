@@ -8,8 +8,7 @@ interface IProps {
   query: string;
 }
 const ShowDevices: React.FC<IProps> = ({ query }) => {
-  const state: string[][] = [];
-  const [values, setValues] = useState(state);
+  const [values, setValues] = useState(["!"]);
   const [searchedVales, setSearchedValues] = useState(values.flat(Infinity));
   const searchForValues = ({
     MODEL = "",
@@ -30,133 +29,24 @@ const ShowDevices: React.FC<IProps> = ({ query }) => {
       }
     });
     console.log(arrayOfValues);
-    setSearchedValues(arrayOfValues.flat(Infinity));
+    //setSearchedValues(arrayOfValues.flat(Infinity));
   };
   useEffect(() => {
-    fetch(`http://localhost:3001/query?${query}`)
+    if(values === ["!"])
+    fetch(`http://localhost:3001/query?query=${query}`)
       .then(res => res.json())
       .then(data => {
-        setValues(
-          groupValues(
-            [
-              "Typ1",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model4",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Ty6p",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny-/",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Typ",
-              "Model",
-              "Producent",
-              "Opis techniczny",
-              "Stan techniczny",
-              "Numer Ewidencyjny"
-            ],
-            6
-          )
-        );
+        const table = data.data.map((value: any) => {
+          return [
+            value.typ,
+            value.model,
+            value.nazwa_producenta,
+            "value.opis_techniczny",
+            value.nr_ewidencyjny,
+          ];
+        });
+        console.log(table);
+        setValues(table);
       });
   }, [values]);
 

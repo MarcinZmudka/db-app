@@ -28,7 +28,7 @@ const UserRoutes: React.FC = () => {
             "Numer Ewidencyjny"
           ]}
         >
-          <MyDevicesFetcher />
+          <MyDevicesFetcher query="select * from sprzet"/>
         </ChoosenDataProvider>
       </Route>
     </>

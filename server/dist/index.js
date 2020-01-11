@@ -19,18 +19,10 @@ app.use(cors());
 const port = 3001;
 const sql = require("mssql");
 const config = {
-    user: "adminazurebaza",
-    password: "Test12345",
-    server: "azuretestbazy.database.windows.net",
-    database: "TEST",
-    pool: {
-        max: 10,
-        min: 0,
-        idleTimeoutMillis: 30000
-    },
-    options: {
-        encrypt: true
-    }
+    user: "sa",
+    password: "12345678",
+    server: "localhost\\PASTACH_INS",
+    database: "Pastach_db"
 };
 app.get("/", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -38,13 +30,21 @@ app.get("/", function (req, res) {
         const password = req.query.password;
         try {
             const pool = yield sql.connect(config);
-            const response = yield pool.request().query(`select * from users`);
-            if (response.recordset[0].login == login && response.recordset[0].password == password) {
-                res.send(true);
+            const data = yield pool.request().query(`select * from uzytkownicy`);
+            for (let i = 0; i < data.recordset.length; i++) {
+                if (data.recordset[i].nazwa_uzytkownika === login &&
+                    data.recordset[i].haslo === password) {
+                    console.log(Math.random(), "logowanko");
+                    const id = data.recordset[i].id_uzytkownika;
+                    const data1 = yield pool
+                        .request()
+                        .query(`select id_stanowiska from pracownicy where id_pracownika = ${id}`);
+                    const job_id = data1.recordset[0].id_stanowiska;
+                    yield sql.close();
+                    return res.send({ id, job_id: 1 });
+                }
             }
-            else {
-                res.send(false);
-            }
+            res.send(false);
             yield sql.close();
         }
         catch (err) {
@@ -53,9 +53,14 @@ app.get("/", function (req, res) {
     });
 });
 app.get("/query", function (req, res) {
-    setTimeout(() => {
-        res.send({ sql: "12345" });
-    }, 1000);
+    return __awaiter(this, void 0, void 0, function* () {
+        const query = req.query.query;
+        const pool = yield sql.connect(config);
+        const data = yield pool.request().query(query);
+        console.log(data);
+        res.send({ data: data.recordset });
+        yield sql.close();
+    });
 });
 app.listen(port, err => {
     if (err) {
