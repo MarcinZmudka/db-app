@@ -6,7 +6,6 @@ const Boxer: React.FC = () => {
   const [choosenValue, setChoosenValue] = useState("");
   const updateChoosenValue = (event: React.FormEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
-    console.log(event.currentTarget.attributes);
     setChoosenValue(value);
   };
   return (

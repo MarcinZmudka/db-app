@@ -8,13 +8,12 @@ interface IProps {
 const ShowDevices: React.FC<IProps> = ({ query }) => {
   const [values, setValues] = useState([""]);
   useEffect(() => {
-    if(values.length == 1)
+    if(values.length === 1)
       fetch(`http://localhost:3001/query?query=${query}`)
         .then(res => {
           return res.json();
         })
         .then(data => {
-          console.log(data);
           const table = data.data.map((value: any) => {
             return [
               value.typ,
@@ -25,10 +24,9 @@ const ShowDevices: React.FC<IProps> = ({ query }) => {
               value.nr_ewidencyjny
             ];
           });
-          console.log(table);
           setValues(table.flat(Infinity));
         });
-  }, [values]);
+  });
 
   return (
     <ChoosenDataProvider values={[]}>

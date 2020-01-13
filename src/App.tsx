@@ -3,8 +3,7 @@ import "./App.css";
 import Login from "./Login/Login";
 import RoutingManager from "./RoutingManager";
 import { UserLoggedContext, UserLoggedProvider } from "./context/UserLogged";
-import Table from "./Table/Table";
-import GroupOfInputs from "./GroupOfInputs/Group";
+
 
 const App: React.FC = () => {
   return (

@@ -9,21 +9,20 @@ interface IProps {
 const Selector: React.FC<IProps> = ({ updateChoosenValue, text, query }) => {
   const [inputValue, setInputValue] = useState([""]);
   useEffect(() => {
-      if(inputValue[0] ==="1"){
+      if(inputValue[0] !== ""){
           return;
       }
       fetch(`http://localhost:3001/query?query=${query}`)
         .then(res => res.json())
         .then(data => {
-          const values = data.data.map((value:any) => {
-
-            const map = new Map(Object.entries(data.data[0]));
-            const array =Array.from(map);
-            return array[0][1];
+            const array: string[] = [];
+            data.data.map( (item:any) => {
+                const label = `${item.nr_ewidencyjny}  ${item.nazwa_producenta} ${item.model}`;
+                array.push(label);
+            })
+            setInputValue(array);
           });
-          setInputValue(values);
         });
-  });
   return (
     <>
       {inputValue === [""] ? (
@@ -37,7 +36,7 @@ const Selector: React.FC<IProps> = ({ updateChoosenValue, text, query }) => {
               value={value}
               key={index}
             >
-              {`Magazyn${value}`}
+              {`${value}`}
             </option>
           ))}
         </select>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Selector from "../Selector/Selector";
+import Selector from "../Selector/SelectorDevice";
 interface IProps{
     text: string,
     query: string
@@ -15,7 +15,7 @@ const Container: React.FC<IProps> = ({text, query}) => {
     }
     return(
         <>
-            <Selector updateChoosenValue={updateBrokenDevice} text="Wybierz urządzenie" query=""/>
+            <Selector updateChoosenValue={updateBrokenDevice} text="Wybierz urządzenie" query="select * from sprzet"/>
             <button onClick={()=> sendQuery()} className="group_input_button">{text}</button>
         </>
     )

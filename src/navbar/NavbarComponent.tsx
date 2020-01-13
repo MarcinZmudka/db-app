@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import MenuButton from '../RighSideMenu/MenuButton';
 import LogOutButton from '../Login/LogOutButton';
 import { UserLoggedContext } from '../context/UserLogged';
 import "./navbar.css";

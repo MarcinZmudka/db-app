@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Table from "../Table/Table";
 import GroupOfInputs from "../GroupOfInputs/Group";
-import groupValues from "../Table/gropValues";
 import { ChoosenDataProvider } from "../context/choosenDataFromTable";
 
 interface IProps {
@@ -20,19 +19,18 @@ const ShowDevices: React.FC<IProps> = ({ query }) => {
     TYP: string;
   }) => {
     const arrayOfValues = values.filter(value => {
-      console.log(`${MODEL}, ${NUMER_EWIDENCYJNY}, ${TYP}`);
       if (value[0].toLowerCase().includes(TYP.toLowerCase()) && 
           value[1].toLowerCase().includes(MODEL.toLowerCase()) &&
           value[5].toLowerCase().includes(NUMER_EWIDENCYJNY.toLowerCase())
           ) {
         return value;
       }
+      return false;
     });
-    console.log(arrayOfValues);
-    //setSearchedValues(arrayOfValues.flat(Infinity));
+    setSearchedValues(arrayOfValues.flat(Infinity));
   };
   useEffect(() => {
-    if(values === ["!"])
+    if(values.length === 1)
     fetch(`http://localhost:3001/query?query=${query}`)
       .then(res => res.json())
       .then(data => {
@@ -42,13 +40,14 @@ const ShowDevices: React.FC<IProps> = ({ query }) => {
             value.model,
             value.nazwa_producenta,
             "value.opis_techniczny",
+            value.stan_techniczny,
             value.nr_ewidencyjny,
           ];
         });
-        console.log(table);
         setValues(table);
+        setSearchedValues(table.flat(Infinity));
       });
-  }, [values]);
+  });
 
   return (
     <>

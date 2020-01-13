@@ -1,8 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import Title from "../Title/Title";
-import GroupOfInputs from "../GroupOfInputs/Group";
+import React, { useState, useEffect } from "react";
 import Table from "../Table/Table";
-import { ChoosenDataContext } from "../context/choosenDataFromTable";
 
 interface IProps {
   tableValue: string[];

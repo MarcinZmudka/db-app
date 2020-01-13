@@ -17,7 +17,6 @@ function addEmployer({IMIĘ, NAZWISKO, PESEL, DZIAŁ_FIRMY, STANOWISKO, MAGAZYN,
     if(day < 10){
         day = "0"+day;
     }
-    const stringdate = `${year}-${month}-${day} 10:25:18`;
     const query = `INSERT INTO pracownicy([id_filii],[imie],[nazwisko],[pesel],[id_dzialu],[id_stanowiska],[id_magazynu]) values(${FILIA}, '${IMIĘ}', '${NAZWISKO}', ${PESEL},${DZIAŁ_FIRMY}, ${STANOWISKO}, ${MAGAZYN} )`;
     console.log(query);
     fetch(`http://localhost:3001/query?query=${query}`)

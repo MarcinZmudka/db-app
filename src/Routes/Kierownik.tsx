@@ -74,8 +74,8 @@ const KierownikRoutes: React.FC = () => {
             "Producent",
             "Opis techniczny",
             "Stan techniczny",
+            "Status",
             "Numer Ewidencyjny",
-            "Status"
           ]}
         >
           <FetcherDevice query="select * from sprzet" />

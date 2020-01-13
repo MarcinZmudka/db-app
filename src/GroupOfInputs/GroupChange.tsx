@@ -20,8 +20,8 @@ const GroupOfInputs: React.FC<IProps> = ({
     setInputValues(newState);
   };
   const validState = (callback: Function) => {
-    if (values.length == Object.keys(inputValues).length) {
-      callback();
+    if (values.length === Object.keys(inputValues).length) {
+      callback(inputValues);
     } else {
       console.log("nie wpisałeś danych do wszystkich pól");
     }

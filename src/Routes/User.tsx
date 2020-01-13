@@ -10,7 +10,7 @@ const UserRoutes: React.FC = () => {
     <>
       <Route path="/zglos_uszkodzenie">
         <Title title="Zgłoś uszkodzenie urządzenia" button={true}></Title>
-        <Container text="Potwierdź zepsucie" query="" />
+        <Container text="Potwierdź zepsucie" query="select * from sprzet" />
       </Route>
       <Route path="/oddaj">
         <Title title="Oddaj swoje urządzenie" button={true}></Title>

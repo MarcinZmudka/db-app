@@ -10,10 +10,13 @@ interface IProps {
 }
 
 const FetcherDeviceComponent: React.FC<IProps> = ({ tableValue, fetched }) => {
-  //   const [fetched, setFetched] = useState(false);
-  //   const [tableValue, setTableValue] = useState([]);
-  const [choosenData, setChoosenData] = useContext(ChoosenDataContext);
-  //   DB_connector(setFetched, setTableValue);
+  const [choosenData] = useContext(ChoosenDataContext);
+  const sqlFunction = (newValues: Array<string>) => {
+    fetch(`http://localhost:3001/query?query=
+    UPDATE sprzet
+    SET typ = '${newValues[0]}', model = '${newValues[1]}', nazwa_producenta = '${newValues[2]}', opis_techniczny = NULL, stan_techniczny = '${newValues[4]}', status ='${newValues[5]}', nr_ewidencyjny = '${newValues[6]}'
+    WHERE nr_ewidencyjny = '${choosenData[6]}';`);
+  };
   return (
     <>
       {fetched ? (
@@ -22,7 +25,7 @@ const FetcherDeviceComponent: React.FC<IProps> = ({ tableValue, fetched }) => {
           <GroupOfInputs
             values={choosenData}
             buttonName="Zmień"
-            buttonFunction={() => {}}
+            buttonFunction={sqlFunction}
           />
           <Table
             values={tableValue}
@@ -32,8 +35,8 @@ const FetcherDeviceComponent: React.FC<IProps> = ({ tableValue, fetched }) => {
               "Producent",
               "Opis techniczny",
               "Stan techniczny",
-              "Numer Ewidencyjny",
-              "Status"
+              "Status",
+              "Numer Ewidencyjny"
             ]}
           />
         </>
@@ -57,7 +60,6 @@ const FetcherDevice: React.FC<IPropsF> = ({ query }) => {
           return res.json();
         })
         .then(data => {
-          console.log(data);
           const table = data.data.map((value: any) => {
             return [
               value.typ,
@@ -65,11 +67,10 @@ const FetcherDevice: React.FC<IPropsF> = ({ query }) => {
               value.nazwa_producenta,
               "value.opis_techniczny",
               value.stan_techniczny,
-              value.nr_ewidencyjny,
-              value.status
+              value.status,
+              value.nr_ewidencyjny
             ];
           });
-          console.log(table);
           setFetched(true);
           setTableValue(table.flat(Infinity));
         });
