@@ -16,26 +16,26 @@ const MagazynierRoutes: React.FC = () => {
           button={true}
         />
         <ChoosenDataProvider values={[]}>
-          <ShowDevices query="" />
+          <ShowDevices query="select * from sprzet" />
         </ChoosenDataProvider>
       </Route>
       <Route path="/wyszukaj_urzadzenia">
         <Title title="Tutaj możesz wyszukać urzadzenie" button={true} />
-        <ShowSearchedDevices query="" />
+        <ShowSearchedDevices query="select * from sprzet" />
       </Route>
       <Route path="/wydaj_urzadzenie">
         <Title title="Tutaj możesz wydać urzadzenie" button={true} />
-        <GiveOutDevice/>
+        <GiveOutDevice />
       </Route>
       <Route path="/odbierz_urzadzenie">
         <Title title="Tutaj możesz odebrać urzadzenie" button={true} />
-        <GiveOutDevice/>
+        <GiveOutDevice />
       </Route>
       <Route path="/magazyn_zglos_usterke">
-        <Title title="Tutaj możesz odebrać urzadzenie" button={true} />
-        <GetDevice/>
+        <Title title="Tutaj możesz zgłosić uszkodzenie urzadzenie" button={true} />
+        <GetDevice />
       </Route>
-      <UserRoutes/>
+      <UserRoutes />
     </>
   );
 };

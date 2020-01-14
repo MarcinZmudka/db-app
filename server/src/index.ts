@@ -32,7 +32,7 @@ app.get("/", async function(req, res) {
           );
         const job_id = data1.recordset[0].id_stanowiska;
         await sql.close();
-        return res.send({ id, job_id: 1 });
+        return res.send({ id, job_id: 2 });
       }
     }
     res.send(false);

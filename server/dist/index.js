@@ -41,7 +41,7 @@ app.get("/", function (req, res) {
                         .query(`select id_stanowiska from pracownicy where id_pracownika = ${id}`);
                     const job_id = data1.recordset[0].id_stanowiska;
                     yield sql.close();
-                    return res.send({ id, job_id: 1 });
+                    return res.send({ id, job_id: 2 });
                 }
             }
             res.send(false);

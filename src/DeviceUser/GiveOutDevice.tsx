@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import Selector from "../Selector/Selector";
-import ButtonContext from "../Buttons/ButtonContextSql";
+import SelectorUser from "../Selector/SelectorUser";
+import SelectorDevice from "../Selector/SelectorDevice";
+import ButtonContext from "../Buttons/ButtonNoContext";
 
 
 const GiveOutDevice: React.FC = () => {
-    const [choosenEmployer, setChoosenEmployer] = useState(null);
-    const [choosenDevice, setChoosenDevice] = useState(null);
+    const [choosenEmployer, setChoosenEmployer] = useState("");
+    const [choosenDevice, setChoosenDevice] = useState("");
+    const updateValueEmployer = (event: React.FormEvent<HTMLInputElement>) => {
+        const value = event.currentTarget.value;
+        const array = value.split(" ");
+        setChoosenEmployer(array[3]);
+    }
+    const updateValueDevice = (event: React.FormEvent<HTMLInputElement>) => {
+        const value = event.currentTarget.value;
+        const array = value.split(" ");
+        setChoosenDevice(array[0]);
+    }
     return (
         <>
-            <Selector text="Wybierz pracownika" updateChoosenValue={()=>{}} query="" />
-            <Selector text="Wybierz urządzenie" updateChoosenValue={()=>{}} query="" />
-            <ButtonContext query="" index={0} buttonText="Wydaj" />
+            <SelectorUser text="Wybierz pracownika" updateChoosenValue={updateValueEmployer} query="select * from pracownicy" />
+            <SelectorDevice text="Wybierz urządzenie" updateChoosenValue={updateValueDevice} query="select * from sprzet" />
+            <ButtonContext query="" buttonText="Wydaj" />
         </>
     )
 }

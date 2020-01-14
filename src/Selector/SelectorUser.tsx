@@ -8,28 +8,21 @@ interface IProps {
 }
 const Selector: React.FC<IProps> = ({ updateChoosenValue, text, query }) => {
   const [inputValue, setInputValue] = useState([""]);
-  const fetchFunc = () => {
-    fetch(`http://localhost:3001/query?query=${query}`)
-      .then(res => res.json())
-      .then(data => {
-        const array: string[] = [];
-        data.data.map((item: any) => {
-          const label = `${item.nr_ewidencyjny}  ${item.nazwa_producenta} ${item.model}`;
-          array.push(label);
-        });
-        setInputValue(array);
-      })
-      .catch((err :Error) => {
-        console.log(err);
-        fetchFunc();
-
-      })
-  }
   useEffect(() => {
     if (inputValue[0] !== "") {
       return;
     }
-    setTimeout(() => fetchFunc(), 100);
+    fetch(`http://localhost:3001/query?query=${query}`)
+      .then(res => res.json())
+      .then(data => {
+          console.log("joł");
+        const array: string[] = [];
+        data.data.map((item: any) => {
+          const label = `${item.imie}  ${item.nazwisko} ${item.pesel}`;
+          array.push(label);
+        });
+        setInputValue(array);
+      });
   });
   return (
     <>
