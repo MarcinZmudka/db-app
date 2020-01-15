@@ -5,7 +5,8 @@ import ShowDevices from "../ShowDevices/ShowDevices";
 import { Route } from "react-router-dom";
 import ShowSearchedDevices from "../ShowDevices/ShowSearchedDevices";
 import UserRoutes from "./User";
-import GiveOutDevice from "../DeviceUser/GiveOutDevice";
+import RepairDevice from "../DeviceUser/RepairDevice";
+import SetPriceOfFix from "../DeviceUser/SetPriceOfFix";
 
 const SerwisantRoutes: React.FC = () => {
   return (
@@ -15,17 +16,17 @@ const SerwisantRoutes: React.FC = () => {
           title="Tutaj możesz naprawić urządzenie"
           button={true}
         />
-        <ChoosenDataProvider values={[]}>
-          <ShowDevices query="" />
-        </ChoosenDataProvider>
+        <RepairDevice />
       </Route>
       <Route path="/oblicz_koszt">
         <Title title="Tutaj możesz obliczyć koszt naprawy" button={true} />
-        <ShowSearchedDevices query="" />
+        <SetPriceOfFix/>
       </Route>
       <Route path="/lista_naprawy">
         <Title title="Lista urządzeń do naprawy " button={true} />
-        <GiveOutDevice/>
+        <ChoosenDataProvider values={[]}>
+          <ShowDevices query="select * from sprzet where stan_techniczny = 'C'" />
+        </ChoosenDataProvider>
       </Route>
       <UserRoutes/>
     </>

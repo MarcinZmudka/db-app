@@ -26,8 +26,6 @@ const KierownikButtons: React.FC = () => {
           path={"zakladanie_konta"}
           text={"Załóż konto pracownikowi"}
         />
-        <MenuButton path={"nadaj_role"} text={"Nadaj role pracownikowi"} />
-        <MenuButton path={"odbierz_role"} text={"Odbierz role pracownikowi"} />
         <MenuButton path={"usun_konto"} text={"Usuń konto pracownikowi"} />
         <MenuButton path={"zmien_konto"} text={"Zmień dane pracownika"} />
       </Route>
