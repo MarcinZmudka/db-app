@@ -26,9 +26,9 @@ const GiveOutDevice: React.FC = () => {
       <SelectorDevice
         text="Wybierz urządzenie"
         updateChoosenValue={updateValueDevice}
-        query="select * from sprzet where status = 'wolny'"
+        query={`select * from sprzet where id_sprzetu in (select id_sprzetu from wypozyczenia where id_pracownika = (select id_pracownika from pracownicy where pesel = '${choosenEmployer}') )`}
       />
-      <ButtonContext query={`insert into wypozyczenia (id_pracownika, id_sprzetu, data_wypozyczenia) values ((select id_pracownika from pracownicy where pesel = '${choosenEmployer}'), ( select id_sprzetu from sprzet where nr_ewidencyjny ='${choosenDevice}'), '2020-01-29')`} buttonText="Wydaj" />
+      <ButtonContext query={``} buttonText="Wydaj" />
     </>
   );
 };

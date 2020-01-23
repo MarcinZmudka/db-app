@@ -7,6 +7,7 @@ import ShowSearchedDevices from "../ShowDevices/ShowSearchedDevices";
 import UserRoutes from "./User";
 import GiveOutDevice from "../DeviceUser/GiveOutDevice";
 import GetDevice from "../DeviceUser/GetDevice";
+import GetBackDevice from "../DeviceUser/GetDebiceBackToHouse";
 const MagazynierRoutes: React.FC = () => {
   return (
     <>
@@ -29,7 +30,7 @@ const MagazynierRoutes: React.FC = () => {
       </Route>
       <Route path="/odbierz_urzadzenie">
         <Title title="Tutaj możesz odebrać urzadzenie" button={true} />
-        <GiveOutDevice />
+        <GetBackDevice />
       </Route>
       <Route path="/magazyn_zglos_usterke">
         <Title title="Tutaj możesz zgłosić uszkodzenie urzadzenie" button={true} />

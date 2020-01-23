@@ -23,7 +23,6 @@ app.get("/", async function(req, res) {
         data.recordset[i].nazwa_uzytkownika === login &&
         data.recordset[i].haslo === password
       ) {
-        console.log(Math.random(), "logowanko");
         const id = data.recordset[i].id_uzytkownika;
         const data1 = await pool
           .request()
@@ -32,7 +31,7 @@ app.get("/", async function(req, res) {
           );
         const job_id = data1.recordset[0].id_stanowiska;
         await sql.close();
-        return res.send({ id, job_id: 1 });
+        return res.send({ id, job_id});
       }
     }
     res.send(false);
@@ -45,7 +44,6 @@ app.get("/query", async function(req, res) {
   const query = req.query.query;
   const pool = await sql.connect(config);
   const data = await pool.request().query(query);
-  console.log(data);
   res.send({ data: data.recordset });
   await sql.close();
 });

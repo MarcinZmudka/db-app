@@ -10,11 +10,11 @@ const UserRoutes: React.FC = () => {
     <>
       <Route path="/zglos_uszkodzenie">
         <Title title="Zgłoś uszkodzenie urządzenia" button={true}></Title>
-        <Container text="Potwierdź zepsucie" query="select * from sprzet" />
+        <Container text="Potwierdź zepsucie" query={`select * from sprzet where id_sprzetu in (select id_sprzetu from wypozyczenia where id_pracownika = ${sessionStorage.getItem('id')})`} />
       </Route>
       <Route path="/oddaj">
         <Title title="Oddaj swoje urządzenie" button={true}></Title>
-        <Container text="Potwierdź oddanie" query="" />
+        <Container text="Potwierdź oddanie" query={`select * from sprzet where id_sprzetu in (select id_sprzetu from wypozyczenia where id_pracownika = ${sessionStorage.getItem('id')})`} />
       </Route>
       <Route path="/urzadzenia">
         <Title title="Tutaj możesz zobaczyć swoje urządzenia" button={true} />
@@ -28,7 +28,7 @@ const UserRoutes: React.FC = () => {
             "Numer Ewidencyjny"
           ]}
         >
-          <MyDevicesFetcher query="select * from sprzet"/>
+          <MyDevicesFetcher query={`select * from sprzet where id_sprzetu in (select id_sprzetu from wypozyczenia where id_pracownika = ${sessionStorage.getItem('id')})`}/>
         </ChoosenDataProvider>
       </Route>
     </>

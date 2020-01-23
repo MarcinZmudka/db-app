@@ -34,14 +34,13 @@ app.get("/", function (req, res) {
             for (let i = 0; i < data.recordset.length; i++) {
                 if (data.recordset[i].nazwa_uzytkownika === login &&
                     data.recordset[i].haslo === password) {
-                    console.log(Math.random(), "logowanko");
                     const id = data.recordset[i].id_uzytkownika;
                     const data1 = yield pool
                         .request()
                         .query(`select id_stanowiska from pracownicy where id_pracownika = ${id}`);
                     const job_id = data1.recordset[0].id_stanowiska;
                     yield sql.close();
-                    return res.send({ id, job_id: 0 });
+                    return res.send({ id, job_id });
                 }
             }
             res.send(false);
@@ -57,7 +56,6 @@ app.get("/query", function (req, res) {
         const query = req.query.query;
         const pool = yield sql.connect(config);
         const data = yield pool.request().query(query);
-        console.log(data);
         res.send({ data: data.recordset });
         yield sql.close();
     });

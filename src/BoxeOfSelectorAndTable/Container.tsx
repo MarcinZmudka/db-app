@@ -11,11 +11,13 @@ const Container: React.FC<IProps> = ({text, query}) => {
         setBrokenDevice(value);
     }
     const sendQuery = () => {
-        fetch(`http://localhost:3001/broken?${brokenDevice}`);
+        const array = brokenDevice.split(" ");
+        console.log(`update sprzet set stan_techniczny = 'C' where nr_ewidencyjny = '${array[0]}'`);
+        fetch(`http://localhost:3001/query?query=update sprzet set stan_techniczny = 'C' where nr_ewidencyjny = '${array[0]}'`);
     }
     return(
         <>
-            <Selector updateChoosenValue={updateBrokenDevice} text="Wybierz urządzenie" query="select * from sprzet"/>
+            <Selector updateChoosenValue={updateBrokenDevice} text="Wybierz urządzenie" query={`${query}`}/>
             <button onClick={()=> sendQuery()} className="group_input_button">{text}</button>
         </>
     )

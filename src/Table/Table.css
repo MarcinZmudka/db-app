@@ -39,8 +39,13 @@
   width: 6vh;
   height: 6vh;
   margin: 1vh;
-  background-color: #00fff0;
   cursor: pointer;
+}
+.blue{
+  background-color: #00fff0;
+}
+.grey{
+  background-color: #444444;
 }
 .arrow_left {
   clip-path: polygon(

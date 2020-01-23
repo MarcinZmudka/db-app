@@ -16,7 +16,7 @@ const GiveOutDevice: React.FC = () => {
         updateChoosenValue={updateValueDevice}
         query="select * from sprzet where stan_techniczny = 'C'"
       />
-      <ButtonContext query="" buttonText="Napraw" />
+      <ButtonContext query={`update sprzet set stan_techniczny = 'A-' where nr_ewidencyjny = '${choosenDevice}'`} buttonText="Napraw" />
     </>
   );
 };

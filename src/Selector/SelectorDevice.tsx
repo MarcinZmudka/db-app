@@ -26,11 +26,8 @@ const Selector: React.FC<IProps> = ({ updateChoosenValue, text, query }) => {
       })
   }
   useEffect(() => {
-    if (inputValue[0] !== "") {
-      return;
-    }
     setTimeout(() => fetchFunc(), 100);
-  });
+  },[query]);
   return (
     <>
       {inputValue === [""] ? (
