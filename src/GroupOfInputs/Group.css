@@ -42,3 +42,10 @@
 .group_input_button:hover{
     border: 3px solid #D4D4D4;
 }
+.title_of_input{
+    color: whitesmoke;
+    font-size: 2vh;
+    text-shadow: 3px 3px 2px #000000;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}

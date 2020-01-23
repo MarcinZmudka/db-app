@@ -9,10 +9,10 @@ import GroupOfInputs from "./GroupOfInputs/Group";
 const App: React.FC = () => {
   return (
     <div className="App">
-      {/* <UserLoggedProvider>
+      <UserLoggedProvider>
         <Conditional />
-      </UserLoggedProvider> */}
-      <GroupOfInputs values = {["1","2","3","4","5","6"]} buttonName="raz dwa" buttonFunction = {()=>{}} />
+      </UserLoggedProvider>
+      {/* <GroupOfInputs values = {["1","2","3","4","5","6"]} buttonName="raz dwa" buttonFunction = {()=>{}} /> */}
     </div>
   );
 };

@@ -23,6 +23,7 @@ const FetcherComponent: React.FC<IProps> = ({ fetched, tableValue }) => {
           <Title title="Tutaj możesz zmienić dane użytkownika" button={true} />
           <GroupOfInputs
             values={choosenData}
+            titles={["Imię", "Nazwisko", "Pesel", "Dział firmy", "Stanowisko"]}
             buttonName="Zmień dane"
             buttonFunction={sqlFunction}
           />

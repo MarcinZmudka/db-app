@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./Group.css";
 
 interface IProps {
-  values: string[];
-  buttonName: string;
-  buttonFunction: Function;
+  values: string[],
+  buttonName: string,
+  buttonFunction: Function,
+  titles: string[]
 }
 
 const GroupOfInputs: React.FC<IProps> = ({
   values,
+  titles,
   buttonFunction,
   buttonName
 }) => {
@@ -34,16 +36,19 @@ const GroupOfInputs: React.FC<IProps> = ({
     <>
       <div className={"box_of_inputs"}>
         {values.map((value, index) => (
-          <input
-            type="text"
-            className={"input_from_group"}
-            onChange={e => {
-              updateState(e, index);
-            }}
-            key={index}
-            value={inputValues[index]}
-            placeholder={value.toUpperCase()}
-          />
+          <div className="box_title_input">
+            <div className="title_of_input">{titles[index]}</div>
+            <input
+              type="text"
+              className={"input_from_group"}
+              onChange={e => {
+                updateState(e, index);
+              }}
+              key={index}
+              value={inputValues[index]}
+              placeholder={value.toUpperCase()}
+            />
+          </div>
         ))}
       </div>
       <button

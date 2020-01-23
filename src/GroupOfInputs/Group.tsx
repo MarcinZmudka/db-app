@@ -31,17 +31,24 @@ const GroupOfInputs: React.FC<IProps> = ({
   return (
     <>
       <div className={"box_of_inputs"}>
-        {values.map((value, index) => (
-          <input
-            type="text"
-            className={"input_from_group"}
-            onChange={e => {
-              upadateState(e);
-            }}
-            key={index}
-            placeholder={value.toUpperCase()}
-          />
-        ))}
+        {values.map((value, index) => {
+          return (
+            <>
+            <div className="box_title_input">
+              <div className="title_of_input">{value}</div>
+              <input
+                type="text"
+                className={"input_from_group"}
+                onChange={e => {
+                  upadateState(e);
+                }}
+                key={index}
+                placeholder={value.toUpperCase()}
+              />
+            </div>
+            </>
+          );
+        })}
       </div>
       <button
         className="group_input_button"

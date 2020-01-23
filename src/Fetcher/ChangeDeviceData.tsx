@@ -24,6 +24,15 @@ const FetcherDeviceComponent: React.FC<IProps> = ({ tableValue, fetched }) => {
           <Title title="Tutaj możesz zmienić dane urządzenia" button={true} />
           <GroupOfInputs
             values={choosenData}
+            titles={[
+              "Typ",
+              "Model",
+              "Producent",
+              "Opis techniczny",
+              "Stan techniczny",
+              "Status",
+              "Numer Ewidencyjny"
+            ]}
             buttonName="Zmień"
             buttonFunction={sqlFunction}
           />
